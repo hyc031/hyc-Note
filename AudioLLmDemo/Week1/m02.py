@@ -133,7 +133,7 @@ with torch.no_grad():
         **inputs,
         max_new_tokens=50,
         do_sample=True,      # 开启采样，不再是死板的 argmax
-        temperature=temperatures,     # 温度大于1，让低概率词也有机会冒泡
+        temperature=temperatures,     # 温度大于1，让低概率词也有机会冒泡, 温度小于1 输出更稳定。
         top_p=0.9,           # 核采样，截断尾部极低概率的噪音词
         top_k=50             # 保留前50个高概率词进行轮盘赌
     )

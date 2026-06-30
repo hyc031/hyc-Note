@@ -1,0 +1,55 @@
+{
+  "builder_name": "json",
+  "citation": "",
+  "config_name": "default",
+  "dataset_name": "alpaca-cleaned",
+  "dataset_size": 40283906,
+  "description": "",
+  "download_checksums": {
+    "hf://datasets/yahma/alpaca-cleaned@12567cabf869d7c92e573c7c783905fc160e9639/alpaca_data_cleaned.json": {
+      "num_bytes": 44307561,
+      "checksum": null
+    }
+  },
+  "download_size": 44307561,
+  "features": {
+    "messages": {
+      "feature": {
+        "role": {
+          "dtype": "string",
+          "_type": "Value"
+        },
+        "content": {
+          "dtype": "string",
+          "_type": "Value"
+        }
+      },
+      "_type": "List"
+    },
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "num_tokens": {
+      "dtype": "int64",
+      "_type": "Value"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 84591467,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 40283906,
+      "num_examples": 51760,
+      "dataset_name": "alpaca-cleaned"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}
