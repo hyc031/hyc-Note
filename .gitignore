@@ -10,9 +10,13 @@
 # 本地下载的模型目录
 **/directory_on_my_computer/
 
+
 # Python
 __pycache__/
 *.py[cod]
 .venv/
 venv/
 .ipynb_checkpoints/
+
+# 本地调试用临时脚本,不上传
+demo.py
