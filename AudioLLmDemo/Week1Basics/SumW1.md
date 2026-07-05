@@ -25,27 +25,36 @@ BatchEncoding  是 Python dict 的子类.
 
 BatchEncoding 自带以下键值:
 
-​              input_ids  -> 每个 token 在词表中的数字索引, shape [batch_size, seq_len]
+​              `input_ids`  -> 每个 token 在词表中的数字索引, shape [batch_size, seq_len]
 
 ​              attention_mask -> 取值: 1 = 真实 token, 0 = 填充 pad 字符, shape [batch_size, seq_len]
 
-​              token_type_ids (双句子任务专用) -> 0:第一句话 token, 1:第二句话 token
+​		(mask 理解为： 区分真实token 还是pad token )
+
+​              `token_type_ids` (双句子任务专用) -> 0:第一句话 token, 1:第二句话 token
 
 ​           				其它可选字段(需要进行设置)
 
-​              overflowing_tokens -> 超长截断后溢出的 token 序列(return_overflowing_tokens=True)
+​              `overflowing_tokens` -> 超长截断后溢出的 token 序列(return_overflowing_tokens=True)
 
-​              offset_mapping   -> fast 分词器专属，每个 token 对应原文本字符起止坐标（做实体抽取必备）
+​              `offset_mapping`   -> fast 分词器每个 token 对应原文本字符起止坐标 做实体抽取必备
 
-​              special_tokens_mask-> 区分普通 token 和特殊 token(CLS/SEP/PAD  )     
+​              `special_tokens_mask`-> 区分普通 token 和特殊 token(CLS/SEP/PAD  )     
 
-
+​		
 
 ##  *apply_chat_template*
 
 apply_chat_template 创建一个对话的模型  *按特定格式拼接 System/User 角色* 
 
 
+
+`apply_chat_template()` 会自动插入模型约定的特殊 token，例如 system/user/assistant 的分隔符。
+
+需要区分：
+
+- 推理时：`add_generation_prompt=True`，表示让模型开始生成 assistant 回复。
+- 训练/SFT 数据处理时：`add_generation_prompt=False`，因为样本中已经包含 assistant 的标准答案。
 
 ```python
 
