@@ -1,17 +1,22 @@
-# 检查对应库的版本是否正确
-# import torch
-# print(torch.__version__)
-# print(torch.cuda.is_available())      # 必须 True
-# print(torch.cuda.get_device_name(0))  # 应打印出你的 GPU 型号
-# print(torch.version.cuda)             # 应显示 12.8
+from datasets import load_dataset
+import soundfile as sf
 
+ds = load_dataset(
+    "hf-internal-testing/librispeech_asr_dummy",
+    "clean",
+    split="validation",
+)
 
-# from huggingface_hub import constants
+item = ds[0]
+audio = item["audio"]
 
-# 打印默认的模型缓存路径
-# 查看HuggingFace Model 缓存路径
-# print(f"Hugging Face 缓存目录: {constants.HF_HUB_CACHE}")
-# ---> /home/r618/.cache/huggingface/hub 
+print(item["text"])
+print(audio.keys())
 
+sf.write(
+    "test.wav",
+    audio["array"],
+    audio["sampling_rate"],
+)
 
-
+print("已保存 test.wav")
