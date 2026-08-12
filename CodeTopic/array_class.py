@@ -65,6 +65,23 @@ solution = Solution()
 ans = solution.threeSum(num)
 print(ans)
 
+# 题目209 长度最小的子数组
+
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+        slow =0
+        fast =0
+        Sum =0
+        min_len = float('inf')
+        while fast <len(nums):
+            Sum +=nums[fast]
+            while Sum >=target:
+                min_len =min(min_len, fast -slow +1)
+                Sum -=nums[slow]
+                slow +=1
+            
+            fast +=1
+        return min_len if min_len !=float('inf') else 0
 
 
 
