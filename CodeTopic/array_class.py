@@ -66,7 +66,15 @@ ans = solution.threeSum(num)
 print(ans)
 
 # 题目209 长度最小的子数组
+'''
+使用快慢指针(滑动窗口)
+首先定义两个指针 slow 和 fast，初始都指向数组的起始位置。
+然后我们使用一个变量 Sum 来记录当前窗口内的元素和。
+判断 Sum 值与target 大小关系, 根据大小关系确定是否要更新 返回的 "最小长度min_len"
 
+# 注意 如果全部未满足应该返回 0  而不是null, 最后多加一条判断即可.
+
+'''
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
         slow =0
@@ -82,6 +90,39 @@ class Solution:
             
             fast +=1
         return min_len if min_len !=float('inf') else 0
+
+
+
+# 3 无重复字符的最长子串
+'''
+给定一个字符串s,请你找出其中不含有重复字符的最长子串的长度。
+'''
+
+# tips "集合"  "不重复" --> 想到set()  函数 
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        slow = 0
+        fast = 0
+        s_set = set()
+        max_len = 0
+
+        while fast < len(s):
+            if s[fast] in s_set: 
+                s_set.remove(s[slow])
+                slow += 1
+            else:
+                s_set.add(s[fast])
+                max_len = max(max_len, len(s_set))
+                # len(s_set) 可以使用 fast - slow + 1 代替
+                fast += 1
+        return max_len
+
+
+
+
+
+
+
 
 
 
