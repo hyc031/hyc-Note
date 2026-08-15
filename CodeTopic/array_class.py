@@ -132,7 +132,29 @@ class Solution:
                 nums[slow] = nums[fast]
                 fast += 1
         return slow + 1
-    
+
+# 704 二分查找
+'''
+一般涉及到 "数组"、 "查找" 想到二分查找 O(log n)
+注意 涉及到区内 一般"左闭右开"  --> [min, max)
+'''
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left = 0
+        right = len(nums)
+        mid = (right + left) // 2
+        while left<right:
+            if nums[mid] == target:
+                return mid
+            elif nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid
+            mid = (right + left) // 2
+        return -1
+ 
+
+
 
 
 
