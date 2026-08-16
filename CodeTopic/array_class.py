@@ -76,7 +76,7 @@ print(ans)
 
 '''
 class Solution:
-    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
         slow =0
         fast =0
         Sum =0
@@ -121,7 +121,7 @@ class Solution:
 # 26 删除有序数组中的重复项
 
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums: list[int]) -> int:
         slow = 0
         fast = 0
         while fast < len(nums):
@@ -139,7 +139,7 @@ class Solution:
 注意 涉及到区内 一般"左闭右开"  --> [min, max)
 '''
 class Solution:
-    def search(self, nums: List[int], target: int) -> int:
+    def search(self, nums: list[int], target: int) -> int:
         left = 0
         right = len(nums)
         mid = (right + left) // 2
@@ -154,6 +154,42 @@ class Solution:
         return -1
  
 
+# 59 螺旋矩阵 II
+
+class Solution:
+    def generateMatrix(self, n: int) -> list[list[int]]:
+        matrix = [[0]*n for _ in range(n)]
+        count = 1
+        index = 0
+        while not count >= n**2:
+            for j in range(index,n-1-index):
+                matrix[index][j] = count
+                count += 1 
+            for i in range(index,n-1-index):
+                matrix[i][n-1-index] = count
+                count += 1
+            for j in range(n-1-index,index,-1):
+                matrix[n-1-index][j] = count
+                count += 1
+            for i in range(n-1-index,index,-1):
+                matrix[i][index] = count
+                count += 1
+            
+            index += 1 
+        
+        if n%2 == 1:
+            matrix[n//2][n//2] = count
+        
+        return matrix
+    
+
+if __name__ == '__main__':
+    s = Solution()
+    s.generateMatrix(4)
+
+
+
+        
 
 
 
