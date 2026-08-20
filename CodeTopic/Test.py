@@ -1,9 +1,6 @@
-nums = [3,4,5,10]
-cache = {}
-for i, item in enumerate(nums):
-    cache[item] = i
+import sys
+print(sys.getswitchinterval())
 
 
-print(cache)
-print(cache[10])
+
 

@@ -194,8 +194,8 @@ class Solution:
         top, bottom = 0, n-1
         left, right = 0, n-1
         count = 1
-        # while count <= n**2:
-        while top <= bottom and left <= right:
+        while count <= n**2:
+        # while top <= bottom and left <= right:
             for j in range(left, right+1):
                 matrix[top][j] = count
                 count += 1
@@ -216,32 +216,47 @@ class Solution:
         
         return matrix
 
-class Solution:
-    def generateMatrix(self, n: int) -> List[List[int]]:
-        matrix = [[0]*n for _ in range(n)]
-        top, bottom, left, right = 0, n-1, 0, n-1
-        num = 1
-        while top <= bottom and left <= right:
-            for j in range(left, right+1):
-                matrix[top][j] = num
-                num += 1
-            top += 1
-            if top > bottom: break
-            for i in range(top, bottom+1):
-                matrix[i][right] = num
-                num += 1
-            right -= 1
-            if left > right: break
-            for j in range(right, left-1, -1):
-                matrix[bottom][j] = num
-                num += 1
-            bottom -= 1
-            if top > bottom: break
-            for i in range(bottom, top-1, -1):
-                matrix[i][left] = num
-                num += 1
-            left += 1
-        return matrix
+
+
+class NumArray:
+    
+    # 编写完测试发现执行时间非常长, 主要计算在 for 循环中
+    # 每次运算都需要执行 O(n)
+    # 改用前缀和 求解
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+
+    def sumRange(self, left: int, right: int) -> int:
+        sum = 0
+        for i in range(left, right+1):
+            sum += self.nums[i]
+        
+        return sum
+        
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
+
+
+class NumArray:
+    
+    # 编写完测试发现执行时间非常长, 主要计算在 for 循环中
+    # 每次运算都需要执行 O(n)
+    # 改用前缀和 求解
+    def __init__(self, nums: List[int]):
+        self.PreSum = [0] * (len(nums) + 1)
+        for i in range(0, len(nums)):
+            self.PreSum[i+1] = self.PreSum[i] + nums[i]
+
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.PreSum[right+1] - self.PreSum[left]
+
+
+
+
+
 
 
 
