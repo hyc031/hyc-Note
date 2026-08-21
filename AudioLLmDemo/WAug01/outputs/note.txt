@@ -1,0 +1,2 @@
+原 aishell 数据内容大   只做200 条数据简单验证 测试框架以及环境是否正常
+原final输出中含有 model.safetensors 文件, 数据过大, 暂不存放.

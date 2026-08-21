@@ -1,4 +1,5 @@
 import os
+import sys
 import torch
 import numpy as np
 import soundfile as sf
@@ -8,7 +9,9 @@ from tqdm import tqdm
 from transformers import WhisperForConditionalGeneration, WhisperProcessor
 
 # ==================== 1. 加载模型 ====================
-model_path = "outputs/whisper-medium-aishell-mini/final"  # 或 checkpoint-200 等
+# 默认评估全量微调模型；也支持命令行传入其他路径，如：
+#   python eval_whisper.py outputs/whisper-medium-aishell-lora/final_merged
+model_path = sys.argv[1] if len(sys.argv) > 1 else "outputs/whisper-medium-aishell-mini/final"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 model = WhisperForConditionalGeneration.from_pretrained(model_path).to(device)
