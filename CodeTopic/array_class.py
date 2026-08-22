@@ -257,6 +257,29 @@ class NumArray:
 
 
 
+# 560 和为 K 的子数组
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        n = len(nums)
+        prefix = [0] * (n +1)
+        for i in range(n):
+            prefix[i+1] = prefix[i] + nums[i]
+
+        cache = {}
+        count = 0
+        for i,item in enumerate(prefix):
+            other = item - k
+            if other in cache:
+                count += cache[other]
+            cache[item] = cache.get(item, 0) + 1
+
+        return count
+        
+
+
+
+
+
 
 
 
